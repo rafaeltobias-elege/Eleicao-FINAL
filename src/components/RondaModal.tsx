@@ -300,7 +300,7 @@ export const RondaModal: React.FC<RondaModalProps> = ({
                   ? 'bg-purple-100 text-purple-900 border-purple-200' 
                   : 'bg-amber-100 text-amber-900 border-amber-200'
               }`}>
-                {shift === 'Tarde' ? '🌤️ Turno da Tarde (13h - 18h)' : '☀️ Turno da Manhã (06h - 13h)'}
+                {shift === 'Tarde' ? '🌤️ Turno da Tarde (12h45 - Término)' : '☀️ Turno da Manhã (06h45 - 12h45)'}
               </span>
             </label>
             <div className="grid grid-cols-2 gap-2">

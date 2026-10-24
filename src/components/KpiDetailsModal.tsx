@@ -71,7 +71,7 @@ export const KpiDetailsModal: React.FC<KpiDetailsModalProps> = ({
       case 'morning_done':
         return {
           title: 'Check-ins Realizados · Turno da Manhã',
-          badgeText: 'Manhã (06h - 13h)',
+          badgeText: 'Manhã (06h45 - 12h45)',
           badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
           emptyText: 'Nenhum check-in matutino registrado até o momento.',
           isDoneList: true,
@@ -89,7 +89,7 @@ export const KpiDetailsModal: React.FC<KpiDetailsModalProps> = ({
       case 'afternoon_done':
         return {
           title: 'Check-ins Realizados · Turno da Tarde',
-          badgeText: 'Tarde (13h - Término)',
+          badgeText: 'Tarde (12h45 - Término)',
           badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
           emptyText: 'Nenhum check-in vespertino registrado até o momento.',
           isDoneList: true,

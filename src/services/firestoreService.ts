@@ -310,10 +310,8 @@ export async function getCheckInsFromCloud(): Promise<CheckInRecord[]> {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const serverList: CheckInRecord[] = await res.json();
     if (Array.isArray(serverList)) {
-      const local = readLocalCheckInsCache();
-      const merged = mergeCheckInLists(serverList, local);
-      writeLocalCheckInsCache(merged);
-      return merged;
+      writeLocalCheckInsCache(serverList);
+      return serverList;
     }
   } catch (err) {
     console.warn('Aviso ao carregar check-ins do servidor, utilizando cache local resiliente:', err);
@@ -736,6 +734,7 @@ export async function clearTestDataFromCloud(range: DayRange): Promise<void> {
       body: JSON.stringify({ from: range.from, to: range.to }),
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    writeLocalCheckInsCache([]);
     // Notifica ouvintes
     getCheckInsFromCloud().then((all) => checkInListeners.forEach((cb) => cb(all)));
     getRondasFromCloud().then((all) => rondaListeners.forEach((cb) => cb(all)));
@@ -750,6 +749,7 @@ export async function wipeEntireDatabaseFromCloud(): Promise<void> {
     const res = await fetch('/api/system/wipe', { method: 'POST' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
+    writeLocalCheckInsCache([]);
     checkInListeners.forEach((cb) => cb([]));
     rondaListeners.forEach((cb) => cb([]));
     schoolListeners.forEach((cb) => cb([]));

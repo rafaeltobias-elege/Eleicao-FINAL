@@ -57,7 +57,7 @@ export const KpiGrid: React.FC<KpiGridProps> = ({
           <div>
             <div className="flex items-center justify-between gap-1">
               <span className="text-[9.5px] sm:text-[11px] font-extrabold uppercase text-emerald-800 bg-emerald-50 px-1.5 sm:px-2 py-0.5 rounded border border-emerald-200 truncate">
-                Manhã · 06h-13h
+                Manhã · 06h45-12h45
               </span>
               <span className="text-[10px] sm:text-xs font-bold font-mono text-emerald-700 shrink-0">
                 {morningPercent}%
@@ -107,7 +107,7 @@ export const KpiGrid: React.FC<KpiGridProps> = ({
           <div>
             <div className="flex items-center justify-between gap-1">
               <span className="text-[9.5px] sm:text-[11px] font-extrabold uppercase text-amber-800 bg-amber-50 px-1.5 sm:px-2 py-0.5 rounded border border-amber-200 truncate">
-                Manhã · 06h-13h
+                Manhã · 06h45-12h45
               </span>
               <span className="text-[9.5px] sm:text-[10px] font-extrabold uppercase text-amber-700 bg-amber-100 px-1 rounded shrink-0">
                 Pendente
@@ -156,7 +156,7 @@ export const KpiGrid: React.FC<KpiGridProps> = ({
           <div>
             <div className="flex items-center justify-between gap-1">
               <span className="text-[9.5px] sm:text-[11px] font-extrabold uppercase text-sky-800 bg-sky-50 px-1.5 sm:px-2 py-0.5 rounded border border-sky-200 truncate">
-                Tarde · 13h-Término
+                Tarde · 12h45-Término
               </span>
               <span className="text-[10px] sm:text-xs font-bold font-mono text-sky-700 shrink-0">
                 {afternoonPercent}%
@@ -205,7 +205,7 @@ export const KpiGrid: React.FC<KpiGridProps> = ({
           <div>
             <div className="flex items-center justify-between gap-1">
               <span className="text-[9.5px] sm:text-[11px] font-extrabold uppercase text-rose-800 bg-rose-50 px-1.5 sm:px-2 py-0.5 rounded border border-rose-200 truncate">
-                Tarde · 13h-Término
+                Tarde · 12h45-Término
               </span>
               <span className="text-[9.5px] sm:text-[10px] font-extrabold uppercase text-rose-700 bg-rose-100 px-1 rounded shrink-0">
                 Pendente

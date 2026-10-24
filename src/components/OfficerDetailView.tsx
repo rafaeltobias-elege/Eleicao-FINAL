@@ -21,7 +21,9 @@ import {
   ShieldCheck,
   UserCheck,
   ExternalLink,
-  PackageCheck
+  PackageCheck,
+  Share2,
+  Clipboard
 } from 'lucide-react';
 import { StaffMember, SchoolItem, CheckInRecord, RondaRecord, DeviceBinding, SchoolOfficer } from '../types';
 import { normalizeText, matchesExactRe, normalizeRe } from '../utils/normalize';
@@ -468,16 +470,16 @@ export const OfficerDetailView: React.FC<OfficerDetailViewProps> = ({
       }
     }
     if (isMorningShift) {
-      return '06h às 13h';
+      return '06h45-12h45';
     }
     const s = (assignedShift || staff?.shiftRaw || '').toLowerCase();
     if (s.includes('tarde') || s === 'pm') {
-      return '13h ao término';
+      return '12h45 ao término';
     }
     if (s.includes('integral') || s.includes('dia')) {
-      return '06h ao término';
+      return '06h45 ao término';
     }
-    return '06h às 13h';
+    return '06h45-12h45';
   }, [assignedShift, staff?.shiftRaw, isMorningShift]);
 
   // Relief Officer ("Policial da Rendição" for morning shift)
@@ -748,7 +750,7 @@ export const OfficerDetailView: React.FC<OfficerDetailViewProps> = ({
             {/* 1. Manhã Feitos */}
             <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 sm:p-3 border border-white/10">
               <div className="flex items-center justify-between text-[10px] font-bold text-emerald-300 uppercase">
-                <span>Manhã · 06h-13h</span>
+                <span>Manhã · 06h45-12h45</span>
                 <span className="font-mono text-xs">
                   {kpiSummary.morningExpectedSchools > 0
                     ? Math.round((kpiSummary.morningDone / kpiSummary.morningExpectedSchools) * 100)
@@ -783,7 +785,7 @@ export const OfficerDetailView: React.FC<OfficerDetailViewProps> = ({
             {/* 3. Tarde Feitos */}
             <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 sm:p-3 border border-white/10">
               <div className="flex items-center justify-between text-[10px] font-bold text-sky-300 uppercase">
-                <span>Tarde · 13h-Término</span>
+                <span>Tarde · 12h45-Término</span>
                 <span className="font-mono text-xs">
                   {kpiSummary.afternoonExpectedSchools > 0
                     ? Math.round((kpiSummary.afternoonDone / kpiSummary.afternoonExpectedSchools) * 100)
@@ -850,6 +852,31 @@ export const OfficerDetailView: React.FC<OfficerDetailViewProps> = ({
                   : 0}%
               </div>
             </div>
+          </div>
+
+          {/* Seção de Divulgação (Link da Aplicação) */}
+          <div className="bg-blue-950/80 border border-blue-500/50 rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 shadow-inner">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-blue-500/30 border border-blue-400/40 flex items-center justify-center shrink-0">
+                <Share2 className="w-5 h-5 text-blue-200" />
+              </div>
+              <div>
+                <div className="text-xs font-black text-white">Link de Acesso para a Tropa</div>
+                <div className="text-[10px] text-blue-200 mt-0.5 break-all">
+                  {window.location.origin}
+                </div>
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.origin);
+                alert('Link copiado para a área de transferência!');
+              }}
+              className="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-black rounded-lg transition shadow-2xs flex items-center gap-2 cursor-pointer"
+            >
+              <Clipboard className="w-3.5 h-3.5" />
+              <span>Copiar Link</span>
+            </button>
           </div>
         </div>
       )}
@@ -1159,10 +1186,10 @@ export const OfficerDetailView: React.FC<OfficerDetailViewProps> = ({
 
                   const shiftLabel =
                     postShift === 'Manhã'
-                      ? 'Turno Manhã · 06h às 13h'
+                      ? 'Turno Manhã · 06h45 às 12h45'
                       : postShift === 'Tarde'
-                      ? 'Turno Tarde · 13h ao término'
-                      : 'Turno Integral · 06h ao término';
+                      ? 'Turno Tarde · 12h45 ao término'
+                      : 'Turno Integral · 06h45 ao término';
 
                   const isConfirmingDelete = postCheckIn && confirmDeleteId === postCheckIn.id;
                   const isDeleting = postCheckIn && isDeletingCheckInId === postCheckIn.id;
@@ -1414,7 +1441,7 @@ export const OfficerDetailView: React.FC<OfficerDetailViewProps> = ({
                             </span>
                             <span className="text-[10px] font-extrabold bg-blue-100 text-blue-900 border border-blue-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
                               {isGcmOfficer(rendicao) && <Shield className="w-3 h-3 text-blue-700" />}
-                              <span>{isGcmOfficer(rendicao) ? 'Rendição GCM · 13h ao término' : 'Turno da Tarde · 13h ao término'}</span>
+                              <span>{isGcmOfficer(rendicao) ? 'Rendição GCM · 12h45 ao término' : 'Turno da Tarde · 12h45 ao término'}</span>
                             </span>
                           </div>
 
@@ -1492,7 +1519,7 @@ export const OfficerDetailView: React.FC<OfficerDetailViewProps> = ({
                             <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
                               <div className="flex items-center justify-between gap-1 mb-2 pb-1.5 border-b border-slate-100">
                                 <span className="text-[10.5px] font-black text-amber-900 uppercase">
-                                  Turno Manhã (06h - 13h) · {reinforced.amList.length} PMs
+                                  Turno Manhã (06h45 - 12h45) · {reinforced.amList.length} PMs
                                 </span>
                               </div>
                               <div className="flex flex-col gap-2">
@@ -1558,7 +1585,7 @@ export const OfficerDetailView: React.FC<OfficerDetailViewProps> = ({
                             <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
                               <div className="flex items-center justify-between gap-1 mb-2 pb-1.5 border-b border-slate-100">
                                 <span className="text-[10.5px] font-black text-blue-900 uppercase">
-                                  Turno Tarde (13h - Término) · {reinforced.pmList.length} PMs
+                                  Turno Tarde (12h45 - Término) · {reinforced.pmList.length} PMs
                                 </span>
                               </div>
                               <div className="flex flex-col gap-2">

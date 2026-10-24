@@ -233,7 +233,7 @@ export const PendingSchoolsTable: React.FC<PendingSchoolsTableProps> = ({
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
             {/* Left side: Shift Selector & Only Pending toggle */}
             <div className="flex items-center gap-2 flex-wrap">
-              {/* Shift Segmented Control: Manhã (06h às 13h) | Tarde (13h ao término) | Dia Inteiro */}
+              {/* Shift Segmented Control: Manhã (06h45 às 12h45) | Tarde (12h45 ao término) | Dia Inteiro */}
               <div className="inline-flex items-center p-1 bg-slate-100 rounded-xl border border-slate-200">
                 <button
                   type="button"
@@ -244,7 +244,7 @@ export const PendingSchoolsTable: React.FC<PendingSchoolsTableProps> = ({
                       ? 'bg-[#0F2B48] text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
-                  title="Focar nas escalas do turno da Manhã (06h às 13h)"
+                  title="Focar nas escalas do turno da Manhã (06h45 às 12h45)"
                 >
                   <Sun className={`w-3.5 h-3.5 ${selectedShift === 'MANHA' ? 'text-amber-400' : 'text-amber-600'}`} />
                   <span>Manhã</span>
@@ -259,7 +259,7 @@ export const PendingSchoolsTable: React.FC<PendingSchoolsTableProps> = ({
                       ? 'bg-purple-800 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
-                  title="Focar nas escalas do turno da Tarde (13h ao término)"
+                  title="Focar nas escalas do turno da Tarde (12h45 ao término)"
                 >
                   <Moon className={`w-3.5 h-3.5 ${selectedShift === 'TARDE' ? 'text-purple-300' : 'text-purple-600'}`} />
                   <span>Tarde</span>
@@ -425,7 +425,7 @@ export const PendingSchoolsTable: React.FC<PendingSchoolsTableProps> = ({
                   <div className="flex items-center justify-between gap-1 mb-2">
                     <span className="text-[10px] font-extrabold uppercase text-[#0F2B48] flex items-center gap-1.5 flex-wrap">
                       <Sun className="w-3.5 h-3.5 text-amber-600" />
-                      <span>Manhã (06h às 13h)</span>
+                      <span>Manhã (06h45 às 12h45)</span>
                       {amOfficers.length > 1 && (
                         <span className="text-[9px] font-extrabold bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded-full border border-blue-200">
                           {amOfficers.length} policiais
@@ -592,7 +592,7 @@ export const PendingSchoolsTable: React.FC<PendingSchoolsTableProps> = ({
                   <div className="flex items-center justify-between gap-1 mb-2">
                     <span className="text-[10px] font-extrabold uppercase text-[#0F2B48] flex items-center gap-1.5 flex-wrap">
                       <CloudSun className="w-3.5 h-3.5 text-blue-600" />
-                      <span>Tarde (13h ao Término)</span>
+                      <span>Tarde (12h45 ao Término)</span>
                       {pmOfficers.length > 1 && (
                         <span className="text-[9px] font-extrabold bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded-full border border-blue-200">
                           {pmOfficers.length} policiais
@@ -892,7 +892,7 @@ export const PendingSchoolsTable: React.FC<PendingSchoolsTableProps> = ({
                           <div className="flex items-center justify-between gap-1 mb-1.5">
                             <span className="text-[10px] font-extrabold uppercase text-[#0F2B48] flex items-center gap-1 flex-wrap">
                               <Sun className="w-3 h-3 text-amber-600" />
-                              <span>Manhã (06h-13h)</span>
+                              <span>Manhã (06h45-12h45)</span>
                               {amOfficers.length > 1 && (
                                 <span className="text-[9px] font-extrabold bg-blue-100 text-blue-800 px-1.5 py-0.2 rounded-full border border-blue-200">
                                   {amOfficers.length} policiais
@@ -1055,7 +1055,7 @@ export const PendingSchoolsTable: React.FC<PendingSchoolsTableProps> = ({
                           <div className="flex items-center justify-between gap-1 mb-1.5">
                             <span className="text-[10px] font-extrabold uppercase text-[#0F2B48] flex items-center gap-1 flex-wrap">
                               <CloudSun className="w-3 h-3 text-blue-600" />
-                              <span>Tarde (13h-Término)</span>
+                              <span>Tarde (12h45-Término)</span>
                               {pmOfficers.length > 1 && (
                                 <span className="text-[9px] font-extrabold bg-blue-100 text-blue-800 px-1.5 py-0.2 rounded-full border border-blue-200">
                                   {pmOfficers.length} policiais
@@ -1259,7 +1259,7 @@ export const PendingSchoolsTable: React.FC<PendingSchoolsTableProps> = ({
           <strong className="text-[#0F2B48] font-bold block mb-0.5">
             Critério Operacional de Presença nas Escolas
           </strong>
-          O policial escalado para o dia inteiro (ambos os turnos) realiza o check-in na sua chegada pela manhã. Esse registro valida sua presença tanto no Turno Manhã (06h às 13h) quanto no Turno Tarde (13h ao Término), não sendo exigido novo check-in à tarde.
+          O policial escalado para o dia inteiro (ambos os turnos) realiza o check-in na sua chegada pela manhã. Esse registro valida sua presença tanto no Turno Manhã (06h45 às 12h45) quanto no Turno Tarde (12h45 ao Término), não sendo exigido novo check-in à tarde.
         </div>
       </div>
 

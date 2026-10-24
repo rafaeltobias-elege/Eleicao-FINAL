@@ -546,10 +546,7 @@ export default function App() {
   // 1b. Check-ins and rondas of a single day (tempo real direto da nuvem Firestore)
   useEffect(() => {
     const unsubCheckIns = subscribeCheckIns((cloudCheckIns) => {
-      setCheckIns((prev) => {
-        // Mescla garantindo que check-ins recém-feitos localmente nunca sejam apagados
-        return mergeCheckInLists(cloudCheckIns || [], prev);
-      });
+      setCheckIns(cloudCheckIns || []);
       setCloudConnected(true);
     }, handleSubError, activeRange);
 

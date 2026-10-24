@@ -104,7 +104,7 @@ export const SectorRondasTab: React.FC<SectorRondasTabProps> = ({
   const [deletingRondaId, setDeletingRondaId] = useState<string | null>(null);
   const [confirmDeleteRonda, setConfirmDeleteRonda] = useState<RondaRecord | null>(null);
 
-  // Shift Filter: Auto-defaults to 'TARDE' when current local time in São Paulo is 13h or later
+  // Shift Filter: Auto-defaults to 'TARDE' when current local time in São Paulo is 12h45 or later
   const [selectedShiftFilter, setSelectedShiftFilter] = useState<'TARDE' | 'MANHA' | 'TODOS'>(() => {
     const currentHour = getSaoPauloHour();
     return currentHour >= 13 ? 'TARDE' : 'MANHA';
@@ -689,10 +689,10 @@ export const SectorRondasTab: React.FC<SectorRondasTabProps> = ({
                 className="py-1.5 px-3 text-xs font-bold text-slate-900 bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 cursor-pointer shadow-2xs"
               >
                 <option value="MANHA">
-                  Turno Manhã (06h às 13h){getSaoPauloHour() < 13 ? ' · Turno Atual' : ''}
+                  Turno Manhã (06h45 às 12h45){getSaoPauloHour() < 13 ? ' · Turno Atual' : ''}
                 </option>
                 <option value="TARDE">
-                  Turno Tarde (13h ao Término){getSaoPauloHour() >= 13 ? ' · Turno Atual' : ''}
+                  Turno Tarde (12h45 ao Término){getSaoPauloHour() >= 13 ? ' · Turno Atual' : ''}
                 </option>
                 <option value="TODOS">
                   Todos os Turnos (Dia Completo)
@@ -734,11 +734,11 @@ export const SectorRondasTab: React.FC<SectorRondasTabProps> = ({
               <span className="text-[11.5px] leading-relaxed">
                 {selectedShiftFilter === 'TARDE' ? (
                   <>
-                    <strong>Modo Turno da Tarde Ativo:</strong> As escolas marcadas como pendentes abaixo são aquelas que <strong>ainda não foram fiscalizadas à tarde (após as 13h)</strong>, mesmo que já tenham recebido ronda pela manhã. Isso garante que todos os postos sejam inspecionados pela equipe da tarde.
+                    <strong>Modo Turno da Tarde Ativo:</strong> As escolas marcadas como pendentes abaixo são aquelas que <strong>ainda não foram fiscalizadas à tarde (após as 12h45)</strong>, mesmo que já tenham recebido ronda pela manhã. Isso garante que todos os postos sejam inspecionados pela equipe da tarde.
                   </>
                 ) : selectedShiftFilter === 'MANHA' ? (
                   <>
-                    <strong>Modo Turno da Manhã Ativo:</strong> Exibindo o panorama e as escolas atendidas durante o 1º turno (06h às 13h).
+                    <strong>Modo Turno da Manhã Ativo:</strong> Exibindo o panorama e as escolas atendidas durante o 1º turno (06h45 às 12h45).
                   </>
                 ) : (
                   <>

@@ -3,9 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
-import { optionalAuth, requireAuth, type AuthRequest } from './src/middleware/auth.ts';
-import { isSqlHostConfigured } from './src/db/index.ts';
-import { getOrCreateUser, getUsers } from './src/db/users.ts';
+import { optionalAuth, requireAuth, type AuthRequest } from './src/middleware/auth';
+import { isSqlHostConfigured } from './src/db/index';
+import { getOrCreateUser, getUsers } from './src/db/users';
 import {
   getCheckInsFromDb,
   insertCheckInToDb,
@@ -30,13 +30,13 @@ import {
   deleteDeviceBindingFromDb,
   deleteAuditLogFromDb,
   clearRangeFromDb,
-} from './src/db/operations.ts';
-import { parseFixedStaffSheet, parseMotorizedStaffSheet, parseCoordinatesSheet } from './src/services/googleWorkspace.ts';
-import { resolveMunicipality } from './src/utils/municipality.ts';
-import { findSchoolCoordinates, matchSchoolWithGeoEntries } from './src/data/schoolCoordinates.ts';
-import { isGcmSchool } from './src/utils/checkinStatus.ts';
-import { normalizeText } from './src/utils/normalize.ts';
-import type { SchoolItem, StaffMember } from './src/types.ts';
+} from './src/db/operations';
+import { parseFixedStaffSheet, parseMotorizedStaffSheet, parseCoordinatesSheet } from './src/services/googleWorkspace';
+import { resolveMunicipality } from './src/utils/municipality';
+import { findSchoolCoordinates, matchSchoolWithGeoEntries } from './src/data/schoolCoordinates';
+import { isGcmSchool } from './src/utils/checkinStatus';
+import { normalizeText } from './src/utils/normalize';
+import type { SchoolItem, StaffMember } from './src/types';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
